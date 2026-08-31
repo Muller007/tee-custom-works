@@ -55,80 +55,72 @@ export default function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="hero">
-        <h1>Bespoke</h1>
-        <div className="hero-serif">Crafted Spaces</div>
-        <p>
-          Custom kitchens, wardrobes, and built-ins designed and created to
-          perfection. Transform your home with timeless craftsmanship.
-        </p>
+      <div
+  className="hero-slider-container"
+  ref={containerRef}
+  onMouseDown={handleSliderStart}
+  onMouseUp={handleSliderEnd}
+  onMouseLeave={handleSliderEnd}
+  onMouseMove={handleSliderMove}
+  onTouchStart={handleSliderStart}
+  onTouchEnd={handleSliderEnd}
+  onTouchMove={handleSliderMove}
+>
+  <div className="slider-wrapper">
+    <div className="slider-inner">
+      <div
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          background:
+            'linear-gradient(135deg, #B89968 0%, #8B7355 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '18px',
+          color: 'white',
+          fontWeight: '500',
+          textAlign: 'center',
+        }}
+      >
+        Before: Raw Space
+      </div>
 
+      <div
+        className="slider-before"
+        style={{ '--clip': `${clipPercent}%` }}
+      >
         <div
-          className="hero-slider-container"
-          ref={containerRef}
-          onMouseDown={handleSliderStart}
-          onMouseUp={handleSliderEnd}
-          onMouseLeave={handleSliderEnd}
-          onMouseMove={handleSliderMove}
-          onTouchStart={handleSliderStart}
-          onTouchEnd={handleSliderEnd}
-          onTouchMove={handleSliderMove}
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            background:
+              'linear-gradient(135deg, #6B5D4F 0%, #4A3F38 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '18px',
+            color: 'white',
+            fontWeight: '500',
+            textAlign: 'center',
+          }}
         >
-          <div className="slider-wrapper">
-            <div className="slider-inner">
-              <div
-                style={{
-                  position: 'absolute',
-                  width: '100%',
-                  height: '100%',
-                  background:
-                    'linear-gradient(135deg, #B89968 0%, #8B7355 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '18px',
-                  color: 'white',
-                  fontWeight: '500',
-                }}
-              >
-                Before: Raw Space
-              </div>
-
-              <div
-                className="slider-before"
-                style={{ '--clip': `${clipPercent}%` }}
-              >
-                <div
-                  style={{
-                    position: 'absolute',
-                    width: '100%',
-                    height: '100%',
-                    background:
-                      'linear-gradient(135deg, #6B5D4F 0%, #4A3F38 100%)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '18px',
-                    color: 'white',
-                    fontWeight: '500',
-                  }}
-                >
-                  After: Transformed
-                </div>
-              </div>
-
-              <div
-                className="slider-handle"
-                style={{ '--clip': `${clipPercent}%` }}
-              />
-
-              <span className="slider-label before">Before</span>
-              <span className="slider-label after">After</span>
-            </div>
-          </div>
+          After: Transformed
         </div>
-      </section>
+      </div>
 
+      <div
+        className="slider-handle"
+        style={{ '--clip': `${clipPercent}%` }}
+      />
+
+      <span className="slider-label before">Before</span>
+      <span className="slider-label after">After</span>
+    </div>
+  </div>
+</div>
       {/* Featured Projects */}
       <section className="projects" id="projects">
         <div className="section-title">
