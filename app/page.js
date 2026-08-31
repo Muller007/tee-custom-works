@@ -46,7 +46,7 @@ export default function Home() {
           <button
             className="whatsapp-btn"
             onClick={() =>
-              window.open('https://wa.me/27XXXXXXXXX', '_blank')
+              window.open('https://wa.me/27719577249', '_blank')
             }
           >
             <span>💬</span> Message
@@ -202,14 +202,14 @@ export default function Home() {
           <button
             className="btn-primary"
             onClick={() =>
-              window.open('https://wa.me/27XXXXXXXXX', '_blank')
+              window.open('https://wa.me/27719757249', '_blank')
             }
           >
             Message on WhatsApp
           </button>
           <button
             className="btn-secondary"
-            onClick={() => alert('Phone: +27 XX XXX XXXX')}
+            onClick={() => alert('Phone: +27719577249')}
           >
             Call for Details
           </button>
