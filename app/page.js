@@ -201,7 +201,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="cta" id="contact">
-        <h2>Let's Create Your Dream Space</h2>
+        <h2>Let&apos;s Create Your Dream Space</h2>
         <p>
           Message Tee on WhatsApp to discuss your project, get a consultation,
           and see how we can transform your home.
