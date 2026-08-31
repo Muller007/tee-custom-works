@@ -202,7 +202,7 @@ export default function Home() {
           <button
             className="btn-primary"
             onClick={() =>
-              window.open('https://wa.me/27719757249', '_blank')
+              window.open('https://wa.me/27719577249', '_blank')
             }
           >
             Message on WhatsApp
