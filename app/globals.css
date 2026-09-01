@@ -414,7 +414,7 @@ footer p {
 @media (max-width: 768px) {
   header {
     padding: 0.75rem 1rem !important;
-    gap: 1rem !important;
+    gap: 0.5rem !important;
   }
   
   header > div:first-child {
@@ -425,30 +425,68 @@ footer p {
     height: 35px !important;
   }
   
-  header > div:first-child span:first-of-type {
-    font-size: 14px !important;
+  header > div:first-child > div span:first-of-type {
+    font-size: 13px !important;
   }
   
-  header > div:first-child span:last-of-type {
-    font-size: 9px !important;
+  header > div:first-child > div span:last-of-type {
+    font-size: 8px !important;
   }
   
   header > div:last-child {
     gap: 0.75rem !important;
+    display: flex !important;
+    alignItems: center !important;
   }
   
+ /* Mobile header adjustments */
+@media (max-width: 768px) {
+  header {
+    padding: 0.75rem 1rem !important;
+    gap: 0.5rem !important;
+  }
+  
+  header > div:first-child {
+    gap: 8px !important;
+  }
+  
+  header > div:first-child img {
+    height: 35px !important;
+  }
+  
+  header > div:first-child > div span:first-of-type {
+    font-size: 13px !important;
+  }
+  
+  header > div:first-child > div span:last-of-type {
+    font-size: 8px !important;
+  }
+  
+  header > div:last-child {
+    gap: 0.75rem !important;
+    display: flex !important;
+    alignItems: center !important;
+  }
+  
+  /* Keep social icons visible on mobile */
   header > div:last-child > div {
-    display: none !important; /* Hide social links on mobile */
+    display: flex !important;
+    gap: 0.75rem !important;
+    alignItems: center !important;
+  }
+  
+  header > div:last-child > div a {
+    font-size: 16px !important;
+    padding: 4px 8px !important;
   }
   
   header button {
     padding: 8px 12px !important;
-    font-size: 12px !important;
+    font-size: 11px !important;
+    gap: 4px !important;
   }
-}
-
-  .whatsapp-btn {
-    padding: 8px 14px;
-    font-size: 12px;
+  
+  header button span {
+    display: none !important; /* Hide "💬" emoji text on mobile */
   }
 }
