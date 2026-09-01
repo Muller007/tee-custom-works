@@ -36,7 +36,10 @@ export default function Home() {
     <>
       {/* Header */}
       <header>
-        <div className="logo">Tee Custom Works</div>
+        <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+  <img src="/tee-logo.png" alt="Tee Custom Works" style={{ height: '40px', width: 'auto' }} />
+  <span style={{ fontSize: '18px', fontWeight: '600', color: '#2c2c2a' }}>Tee Custom Works</span>
+</div>
         <div className="header-right">
           <nav style={{ display: 'none' }}>
             <a href="#projects">Projects</a>
