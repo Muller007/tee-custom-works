@@ -35,22 +35,89 @@ export default function Home() {
   return (
     <>
       {/* Header */}
-      <header>
-  <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-    <img src="/tee-logo.png" alt="Tee Custom Works" style={{ height: '40px', width: 'auto' }} />
-    <span style={{ fontSize: '18px', fontWeight: '600', color: '#2c2c2a' }}>Tee Custom Works</span>
+      <header style={{
+  padding: '1rem 2rem',
+  background: 'white',
+  borderBottom: '0.5px solid #e8e3dc',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  position: 'sticky',
+  top: 0,
+  zIndex: 100
+}}>
+  {/* Left Side: Logo + Business Name */}
+  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+    <img 
+      src="/tee-logo.png" 
+      alt="Tee Custom Works" 
+      style={{ height: '45px', width: 'auto' }} 
+    />
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <span style={{ fontSize: '16px', fontWeight: '700', color: '#2c2c2a' }}>Tee</span>
+      <span style={{ fontSize: '10px', color: '#8a8480', letterSpacing: '1px' }}>CUSTOM WORKS</span>
+    </div>
   </div>
-  <div className="header-right">
-    <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-      <a href="https://facebook.com/teecustomkitchens" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#2c2c2a', fontSize: '13px', transition: 'color 0.2s' }}>
-        f Facebook
+
+  {/* Right Side: Social Links + WhatsApp Button */}
+  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+    {/* Social Links - Hidden on Mobile */}
+    <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+      <a 
+        href="https://facebook.com/teecustomworks" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        style={{ 
+          textDecoration: 'none', 
+          color: '#2c2c2a', 
+          fontSize: '13px', 
+          fontWeight: '500',
+          transition: 'color 0.2s'
+        }}
+        onMouseEnter={(e) => e.target.style.color = '#8b7355'}
+        onMouseLeave={(e) => e.target.style.color = '#2c2c2a'}
+      >
+        f
       </a>
-      <a href="https://instagram.com/teecustomkitchens" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#2c2c2a', fontSize: '13px', transition: 'color 0.2s' }}>
-        📷 Instagram
+      <a 
+        href="https://instagram.com/teecustomworks" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        style={{ 
+          textDecoration: 'none', 
+          color: '#2c2c2a', 
+          fontSize: '13px',
+          fontWeight: '500',
+          transition: 'color 0.2s'
+        }}
+        onMouseEnter={(e) => e.target.style.color = '#8b7355'}
+        onMouseLeave={(e) => e.target.style.color = '#2c2c2a'}
+      >
+        📷
       </a>
-    </nav>
-    <button className="whatsapp-btn" onClick={() => window.open('https://wa.me/27719577249', '_blank')}>
-      <span>💬</span> Message
+    </div>
+
+    {/* WhatsApp Button */}
+    <button
+      onClick={() => window.open('https://wa.me/27XXXXXXXXX', '_blank')}
+      style={{
+        background: '#8b7355',
+        color: 'white',
+        border: 'none',
+        padding: '10px 16px',
+        borderRadius: '6px',
+        fontSize: '13px',
+        fontWeight: '600',
+        cursor: 'pointer',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '6px',
+        transition: 'background 0.2s'
+      }}
+      onMouseEnter={(e) => e.target.style.background = '#7a6349'}
+      onMouseLeave={(e) => e.target.style.background = '#8b7355'}
+    >
+      💬 Message
     </button>
   </div>
 </header>
