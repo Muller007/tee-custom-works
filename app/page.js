@@ -36,26 +36,24 @@ export default function Home() {
     <>
       {/* Header */}
       <header>
-        <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-  <img src="/tee-logo.png" alt="Tee Custom Works" style={{ height: '40px', width: 'auto' }} />
-  <span style={{ fontSize: '18px', fontWeight: '600', color: '#2c2c2a' }}>Tee Custom Works</span>
-</div>
-        <div className="header-right">
-          <nav style={{ display: 'none' }}>
-            <a href="#projects">Projects</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-          </nav>
-          <button
-            className="whatsapp-btn"
-            onClick={() =>
-              window.open('https://wa.me/27719577249', '_blank')
-            }
-          >
-            <span>💬</span> Message
-          </button>
-        </div>
-      </header>
+  <div className="logo" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+    <img src="/tee-logo.png" alt="Tee Custom Works" style={{ height: '40px', width: 'auto' }} />
+    <span style={{ fontSize: '18px', fontWeight: '600', color: '#2c2c2a' }}>Tee Custom Works</span>
+  </div>
+  <div className="header-right">
+    <nav style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+      <a href="https://facebook.com/teecustomkitchens" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#2c2c2a', fontSize: '13px', transition: 'color 0.2s' }}>
+        f Facebook
+      </a>
+      <a href="https://instagram.com/teecustomkitchens" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none', color: '#2c2c2a', fontSize: '13px', transition: 'color 0.2s' }}>
+        📷 Instagram
+      </a>
+    </nav>
+    <button className="whatsapp-btn" onClick={() => window.open('https://wa.me/27719577249', '_blank')}>
+      <span>💬</span> Message
+    </button>
+  </div>
+</header>
 
       {/* Hero Section */}
       <div
