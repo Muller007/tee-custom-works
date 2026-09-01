@@ -64,7 +64,7 @@ export default function Home() {
     {/* Social Links - Hidden on Mobile */}
     <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
       <a 
-        href="https://facebook.com/teecustomworks" 
+        href="https://facebook.com/teecustomkitchens" 
         target="_blank" 
         rel="noopener noreferrer"
         style={{ 
@@ -80,7 +80,7 @@ export default function Home() {
         f
       </a>
       <a 
-        href="https://instagram.com/teecustomworks" 
+        href="https://instagram.com/teecustomkitchens" 
         target="_blank" 
         rel="noopener noreferrer"
         style={{ 
@@ -99,7 +99,7 @@ export default function Home() {
 
     {/* WhatsApp Button */}
     <button
-      onClick={() => window.open('https://wa.me/27XXXXXXXXX', '_blank')}
+      onClick={() => window.open('https://wa.me/27719577249', '_blank')}
       style={{
         background: '#8b7355',
         color: 'white',
