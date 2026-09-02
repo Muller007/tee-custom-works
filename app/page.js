@@ -35,68 +35,65 @@ export default function Home() {
   return (
     <>
       {/* Header */}
-      <header style={{
-  padding: '1rem 2rem',
+ <header style={{
+  padding: '1rem 1.5rem',
   background: 'white',
   borderBottom: '0.5px solid #e8e3dc',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
+  flexWrap: 'wrap',
   position: 'sticky',
   top: 0,
-  zIndex: 100
+  zIndex: 100,
+  gap: '1rem'
 }}>
-  {/* Left Side: Logo + Business Name */}
-  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+  
+  {/* LEFT: Logo */}
+  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
     <img 
       src="/tee-logo.png" 
       alt="Tee Custom Works" 
-      style={{ height: '45px', width: 'auto' }} 
+      style={{ height: '40px', width: 'auto' }} 
     />
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <span style={{ fontSize: '16px', fontWeight: '700', color: '#2c2c2a' }}>Tee</span>
-      <span style={{ fontSize: '10px', color: '#8a8480', letterSpacing: '1px' }}>CUSTOM WORKS</span>
-    </div>
+    <span style={{ fontSize: '16px', fontWeight: '700', color: '#2c2c2a' }}>
+      Tee Custom Works
+    </span>
   </div>
-
-  {/* Right Side: Social Links + WhatsApp Button */}
-  <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-    {/* Social Links - Hidden on Mobile */}
-    <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-      <a 
-        href="https://facebook.com/teecustomkitchens" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        style={{ 
-          textDecoration: 'none', 
-          color: '#2c2c2a', 
-          fontSize: '13px', 
-          fontWeight: '500',
-          transition: 'color 0.2s'
-        }}
-        onMouseEnter={(e) => e.target.style.color = '#8b7355'}
-        onMouseLeave={(e) => e.target.style.color = '#2c2c2a'}
-      >
-        f
-      </a>
-      <a 
-        href="https://instagram.com/teecustomkitchens" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        style={{ 
-          textDecoration: 'none', 
-          color: '#2c2c2a', 
-          fontSize: '13px',
-          fontWeight: '500',
-          transition: 'color 0.2s'
-        }}
-        onMouseEnter={(e) => e.target.style.color = '#8b7355'}
-        onMouseLeave={(e) => e.target.style.color = '#2c2c2a'}
-      >
-        📷
-      </a>
-    </div>
-
+  
+  {/* RIGHT: Social Links + WhatsApp Button */}
+  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+    
+    {/* Facebook */}
+    <a 
+      href="https://facebook.com/teecustomkitchens" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      style={{ 
+        textDecoration: 'none',
+        fontSize: '18px',
+        color: '#8b7355',
+        transition: 'color 0.2s'
+      }}
+    >
+      f
+    </a>
+    
+    {/* Instagram */}
+    <a 
+      href="https://instagram.com/teecustomkitchens" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      style={{ 
+        textDecoration: 'none',
+        fontSize: '18px',
+        color: '#8b7355',
+        transition: 'color 0.2s'
+      }}
+    >
+      📷
+    </a>
+    
     {/* WhatsApp Button */}
     <button
       onClick={() => window.open('https://wa.me/27719577249', '_blank')}
@@ -104,22 +101,23 @@ export default function Home() {
         background: '#8b7355',
         color: 'white',
         border: 'none',
-        padding: '10px 16px',
+        padding: '10px 14px',
         borderRadius: '6px',
-        fontSize: '13px',
+        fontSize: '12px',
         fontWeight: '600',
         cursor: 'pointer',
         display: 'flex',
         alignItems: 'center',
-        gap: '6px',
-        transition: 'background 0.2s'
+        gap: '4px',
+        transition: 'background 0.2s',
+        whiteSpace: 'nowrap'
       }}
-      onMouseEnter={(e) => e.target.style.background = '#7a6349'}
-      onMouseLeave={(e) => e.target.style.background = '#8b7355'}
     >
-      💬 Message
+      💬 Chat
     </button>
+    
   </div>
+  
 </header>
 
       {/* Hero Section */}
