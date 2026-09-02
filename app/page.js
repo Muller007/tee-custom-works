@@ -36,44 +36,42 @@ export default function Home() {
     <>
       {/* Header */}
  <header style={{
-  padding: '1rem 1.5rem',
+  padding: '0.75rem 1rem',
   background: 'white',
   borderBottom: '0.5px solid #e8e3dc',
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  flexWrap: 'wrap',
   position: 'sticky',
   top: 0,
   zIndex: 100,
-  gap: '1rem'
+  gap: '0.5rem'
 }}>
   
   {/* LEFT: Logo */}
-  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
     <img 
       src="/tee-logo.png" 
       alt="Tee Custom Works" 
-      style={{ height: '40px', width: 'auto' }} 
+      style={{ height: '35px', width: 'auto' }} 
     />
-    <span style={{ fontSize: '16px', fontWeight: '700', color: '#2c2c2a' }}>
-      Tee Custom Works
+    <span style={{ fontSize: '14px', fontWeight: '700', color: '#2c2c2a' }}>
+      Tee
     </span>
   </div>
   
   {/* RIGHT: Social Links + WhatsApp Button */}
-  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
     
     {/* Facebook */}
     <a 
-      href="https://facebook.com/teecustomkitchens" 
+      href="https://facebook.com/teecustomworks" 
       target="_blank" 
       rel="noopener noreferrer"
       style={{ 
         textDecoration: 'none',
-        fontSize: '18px',
-        color: '#8b7355',
-        transition: 'color 0.2s'
+        fontSize: '16px',
+        color: '#8b7355'
       }}
     >
       f
@@ -81,14 +79,13 @@ export default function Home() {
     
     {/* Instagram */}
     <a 
-      href="https://instagram.com/teecustomkitchens" 
+      href="https://instagram.com/teecustomworks" 
       target="_blank" 
       rel="noopener noreferrer"
       style={{ 
         textDecoration: 'none',
-        fontSize: '18px',
-        color: '#8b7355',
-        transition: 'color 0.2s'
+        fontSize: '16px',
+        color: '#8b7355'
       }}
     >
       📷
@@ -96,24 +93,19 @@ export default function Home() {
     
     {/* WhatsApp Button */}
     <button
-      onClick={() => window.open('https://wa.me/27719577249', '_blank')}
+      onClick={() => window.open('https://wa.me/27XXXXXXXXX', '_blank')}
       style={{
         background: '#8b7355',
         color: 'white',
         border: 'none',
-        padding: '10px 14px',
-        borderRadius: '6px',
-        fontSize: '12px',
+        padding: '6px 12px',
+        borderRadius: '4px',
+        fontSize: '11px',
         fontWeight: '600',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        gap: '4px',
-        transition: 'background 0.2s',
-        whiteSpace: 'nowrap'
+        cursor: 'pointer'
       }}
     >
-      💬 Chat
+      💬
     </button>
     
   </div>
