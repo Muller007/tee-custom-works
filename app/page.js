@@ -7,9 +7,9 @@ export default function Home() {
   const [isDragging, setIsDragging] = useState(false);
 
   // Calculate text visibility based on slider position
-  const beforeVisibility = Math.max(0, 1 - (clipPercent / 30)); // Fades out as you move right
-  const afterVisibility = Math.max(0, (clipPercent - 70) / 30); // Fades in as you move far right
-  const percentVisibility = clipPercent > 25 && clipPercent < 75 ? 1 : 0; // Shows in middle
+  const beforeVisibility = Math.max(0, 1 - (clipPercent / 30));
+  const afterVisibility = Math.max(0, (clipPercent - 70) / 30);
+  const percentVisibility = clipPercent > 25 && clipPercent < 75 ? 1 : 0;
 
   // Handle slider drag
   const handleSliderStart = () => setIsDragging(true);
@@ -193,7 +193,6 @@ export default function Home() {
 
           {/* Slider Handle (Vertical Line with Glow) */}
           <div
-            className="slider-handle"
             style={{
               position: 'absolute',
               top: 0,
@@ -209,100 +208,127 @@ export default function Home() {
             }}
           />
 
-          {/* BEFORE Label - Smart Fading */}
+          {/* ========== ONLY SMART LABELS - NO DESCRIPTIVE TEXT ========== */}
+
+          {/* BEFORE Label - Only appears on left side */}
           <span
             style={{
               position: 'absolute',
               top: '20px',
               left: '20px',
-              background: 'rgba(0,0,0,0.6)',
+              background: 'rgba(0,0,0,0.7)',
               color: 'white',
-              padding: '8px 16px',
-              borderRadius: '4px',
-              fontSize: '14px',
-              fontWeight: '600',
+              padding: '10px 20px',
+              borderRadius: '6px',
+              fontSize: '16px',
+              fontWeight: '700',
               zIndex: 5,
               pointerEvents: 'none',
               opacity: beforeVisibility,
-              transition: 'opacity 0.3s ease',
-              transform: beforeVisibility > 0.5 ? 'translateX(0)' : 'translateX(-10px)'
+              transition: 'opacity 0.3s ease, transform 0.3s ease',
+              transform: beforeVisibility > 0.5 ? 'translateX(0) scale(1)' : 'translateX(-15px) scale(0.9)',
+              letterSpacing: '1px'
             }}
           >
             BEFORE
           </span>
 
-          {/* AFTER Label - Smart Fading */}
+          {/* AFTER Label - Only appears on right side */}
           <span
             style={{
               position: 'absolute',
               top: '20px',
               right: '20px',
-              background: 'rgba(0,0,0,0.6)',
+              background: 'rgba(0,0,0,0.7)',
               color: 'white',
-              padding: '8px 16px',
-              borderRadius: '4px',
-              fontSize: '14px',
-              fontWeight: '600',
+              padding: '10px 20px',
+              borderRadius: '6px',
+              fontSize: '16px',
+              fontWeight: '700',
               zIndex: 5,
               pointerEvents: 'none',
               opacity: afterVisibility,
-              transition: 'opacity 0.3s ease',
-              transform: afterVisibility > 0.5 ? 'translateX(0)' : 'translateX(10px)'
+              transition: 'opacity 0.3s ease, transform 0.3s ease',
+              transform: afterVisibility > 0.5 ? 'translateX(0) scale(1)' : 'translateX(15px) scale(0.9)',
+              letterSpacing: '1px'
             }}
           >
             AFTER
           </span>
 
-          {/* Creative Percentage Indicator in Center */}
+          {/* Creative Percentage Indicator - Center Only */}
           <div
             style={{
               position: 'absolute',
               top: '50%',
               left: '50%',
               transform: 'translate(-50%, -50%)',
-              background: 'rgba(0,0,0,0.7)',
-              color: 'white',
-              padding: '12px 20px',
-              borderRadius: '8px',
-              fontSize: '16px',
-              fontWeight: '600',
+              background: 'rgba(0,0,0,0.8)',
+              color: '#d4a574',
+              padding: '16px 28px',
+              borderRadius: '10px',
+              fontSize: '18px',
+              fontWeight: '700',
               zIndex: 8,
               pointerEvents: 'none',
               opacity: percentVisibility,
-              transition: 'opacity 0.3s ease',
+              transition: 'opacity 0.3s ease, transform 0.3s ease',
               textAlign: 'center',
-              backdropFilter: 'blur(4px)'
+              backdropFilter: 'blur(6px)',
+              transform: percentVisibility > 0 ? 'translate(-50%, -50%) scale(1)' : 'translate(-50%, -50%) scale(0.8)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.3)'
             }}
           >
-            <div style={{ fontSize: '12px', opacity: 0.8, marginBottom: '4px' }}>
-              Drag to compare
+            <div style={{ fontSize: '13px', opacity: 0.85, marginBottom: '6px', letterSpacing: '0.5px' }}>
+              Drag to Compare
             </div>
-            <div style={{ fontSize: '18px', fontWeight: '700' }}>
+            <div style={{ fontSize: '20px', fontWeight: '800', letterSpacing: '1px' }}>
               {Math.round(clipPercent)}% • {Math.round(100 - clipPercent)}%
             </div>
           </div>
 
-          {/* Subtle gradient overlay showing blend */}
+          {/* Subtle gradient overlay at top showing blend */}
           <div
             style={{
               position: 'absolute',
               top: 0,
               left: 0,
               right: 0,
-              height: '2px',
-              background: `linear-gradient(to right, rgba(139,115,85,0.8) 0%, rgba(212,165,116,0.8) ${clipPercent}%, rgba(100,100,100,0.3) ${clipPercent}%, rgba(50,50,50,0.3) 100%)`,
+              height: '3px',
+              background: `linear-gradient(to right, rgba(139,115,85,0.9) 0%, rgba(212,165,116,0.9) ${clipPercent}%, rgba(100,100,100,0.4) ${clipPercent}%, rgba(50,50,50,0.4) 100%)`,
               zIndex: 9,
               pointerEvents: 'none'
             }}
           />
+
+          {/* Instructions at bottom */}
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '15px',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              color: 'white',
+              fontSize: '12px',
+              zIndex: 5,
+              opacity: 0.6,
+              pointerEvents: 'none',
+              background: 'rgba(0,0,0,0.3)',
+              padding: '6px 12px',
+              borderRadius: '4px'
+            }}
+          >
+            ← Swipe or drag →
+          </div>
         </div>
 
         <p style={{
           fontSize: '1.1rem',
           color: '#666',
-          marginBottom: '2rem'
+          marginBottom: '2rem',
+          marginTop: '0.5rem'
         }}>
-          ← Drag the slider to reveal the transformation →
+          Reveal the transformation
         </p>
       </section>
 
