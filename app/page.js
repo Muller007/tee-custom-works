@@ -6,6 +6,11 @@ export default function Home() {
   const containerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
 
+  // Calculate text visibility based on slider position
+  const beforeVisibility = Math.max(0, 1 - (clipPercent / 30)); // Fades out as you move right
+  const afterVisibility = Math.max(0, (clipPercent - 70) / 30); // Fades in as you move far right
+  const percentVisibility = clipPercent > 25 && clipPercent < 75 ? 1 : 0; // Shows in middle
+
   // Handle slider drag
   const handleSliderStart = () => setIsDragging(true);
   const handleSliderEnd = () => setIsDragging(false);
@@ -186,7 +191,7 @@ export default function Home() {
             />
           </div>
 
-          {/* Slider Handle (Vertical Line) */}
+          {/* Slider Handle (Vertical Line with Glow) */}
           <div
             className="slider-handle"
             style={{
@@ -197,13 +202,14 @@ export default function Home() {
               height: '100%',
               background: 'white',
               cursor: 'col-resize',
-              boxShadow: '0 0 10px rgba(0,0,0,0.3)',
+              boxShadow: '0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(139,115,85,0.4)',
               transform: 'translateX(-50%)',
-              zIndex: 10
+              zIndex: 10,
+              transition: 'box-shadow 0.2s ease'
             }}
           />
 
-          {/* Before Label */}
+          {/* BEFORE Label - Smart Fading */}
           <span
             style={{
               position: 'absolute',
@@ -216,13 +222,16 @@ export default function Home() {
               fontSize: '14px',
               fontWeight: '600',
               zIndex: 5,
-              pointerEvents: 'none'
+              pointerEvents: 'none',
+              opacity: beforeVisibility,
+              transition: 'opacity 0.3s ease',
+              transform: beforeVisibility > 0.5 ? 'translateX(0)' : 'translateX(-10px)'
             }}
           >
             BEFORE
           </span>
 
-          {/* After Label */}
+          {/* AFTER Label - Smart Fading */}
           <span
             style={{
               position: 'absolute',
@@ -235,11 +244,57 @@ export default function Home() {
               fontSize: '14px',
               fontWeight: '600',
               zIndex: 5,
-              pointerEvents: 'none'
+              pointerEvents: 'none',
+              opacity: afterVisibility,
+              transition: 'opacity 0.3s ease',
+              transform: afterVisibility > 0.5 ? 'translateX(0)' : 'translateX(10px)'
             }}
           >
             AFTER
           </span>
+
+          {/* Creative Percentage Indicator in Center */}
+          <div
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              background: 'rgba(0,0,0,0.7)',
+              color: 'white',
+              padding: '12px 20px',
+              borderRadius: '8px',
+              fontSize: '16px',
+              fontWeight: '600',
+              zIndex: 8,
+              pointerEvents: 'none',
+              opacity: percentVisibility,
+              transition: 'opacity 0.3s ease',
+              textAlign: 'center',
+              backdropFilter: 'blur(4px)'
+            }}
+          >
+            <div style={{ fontSize: '12px', opacity: 0.8, marginBottom: '4px' }}>
+              Drag to compare
+            </div>
+            <div style={{ fontSize: '18px', fontWeight: '700' }}>
+              {Math.round(clipPercent)}% • {Math.round(100 - clipPercent)}%
+            </div>
+          </div>
+
+          {/* Subtle gradient overlay showing blend */}
+          <div
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              height: '2px',
+              background: `linear-gradient(to right, rgba(139,115,85,0.8) 0%, rgba(212,165,116,0.8) ${clipPercent}%, rgba(100,100,100,0.3) ${clipPercent}%, rgba(50,50,50,0.3) 100%)`,
+              zIndex: 9,
+              pointerEvents: 'none'
+            }}
+          />
         </div>
 
         <p style={{
@@ -247,7 +302,7 @@ export default function Home() {
           color: '#666',
           marginBottom: '2rem'
         }}>
-          Drag the slider to see the transformation
+          ← Drag the slider to reveal the transformation →
         </p>
       </section>
 
@@ -403,35 +458,6 @@ export default function Home() {
                 onMouseEnter={(e) => e.target.style.filter = 'brightness(0.8)'}
                 onMouseLeave={(e) => e.target.style.filter = 'brightness(1)'}
               />
-              {/* Overlay on hover */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  bottom: 0,
-                  background: 'rgba(0,0,0,0)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  transition: 'background 0.3s ease'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0.3)'}
-                onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(0,0,0,0)'}
-              >
-                <span style={{
-                  color: 'white',
-                  fontSize: '28px',
-                  opacity: 0,
-                  transition: 'opacity 0.3s ease'
-                }}
-                onMouseEnter={(e) => e.target.style.opacity = '1'}
-                onMouseLeave={(e) => e.target.style.opacity = '0'}
-                >
-                  👁️
-                </span>
-              </div>
             </div>
           ))}
         </div>
