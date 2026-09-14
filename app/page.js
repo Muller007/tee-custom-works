@@ -59,7 +59,7 @@ export default function Home() {
           
           {/* Facebook */}
           <a 
-            href="https://facebook.com/teecustomworks" 
+            href="https://facebook.com/teecustomkitchens" 
             target="_blank" 
             rel="noopener noreferrer"
             style={{ 
@@ -74,7 +74,7 @@ export default function Home() {
           
           {/* Instagram */}
           <a 
-            href="https://instagram.com/teecustomworks" 
+            href="https://instagram.com/teecustomkitchens" 
             target="_blank" 
             rel="noopener noreferrer"
             style={{ 
@@ -89,7 +89,7 @@ export default function Home() {
           
           {/* WhatsApp Button */}
           <button
-            onClick={() => window.open('https://wa.me/27XXXXXXXXX', '_blank')}
+            onClick={() => window.open('https://wa.me/27719577249', '_blank')}
             style={{
               background: '#8b7355',
               color: 'white',
@@ -153,7 +153,7 @@ export default function Home() {
           {/* AFTER IMAGE (Background) */}
           <img
             src="/after.jpg"
-            alt="After: Transformed Space"
+            alt=" "
             style={{
               position: 'absolute',
               width: '100%',
@@ -179,7 +179,7 @@ export default function Home() {
           >
             <img
               src="/before.jpg"
-              alt="Before: Raw Space"
+              alt=" "
               style={{
                 position: 'absolute',
                 width: '100%',
@@ -587,7 +587,7 @@ export default function Home() {
           flexWrap: 'wrap'
         }}>
           <button
-            onClick={() => window.open('https://wa.me/27XXXXXXXXX', '_blank')}
+            onClick={() => window.open('https://wa.me/27719577249', '_blank')}
             style={{
               background: '#d4a574',
               color: '#2c2c2a',
@@ -605,7 +605,7 @@ export default function Home() {
             💬 WhatsApp Us
           </button>
           <button
-            onClick={() => window.location.href = 'tel:+27XXXXXXXXX'}
+            onClick={() => window.location.href = 'tel:+27719577249'}
             style={{
               background: 'transparent',
               color: 'white',
@@ -647,15 +647,15 @@ export default function Home() {
           marginTop: '1.5rem',
           flexWrap: 'wrap'
         }}>
-          <a href="https://facebook.com/teecustomworks" target="_blank" rel="noopener noreferrer"
+          <a href="https://facebook.com/teecustomkitchens" target="_blank" rel="noopener noreferrer"
             style={{ color: '#d4a574', textDecoration: 'none', fontSize: '0.95rem' }}>
             Facebook
           </a>
-          <a href="https://instagram.com/teecustomworks" target="_blank" rel="noopener noreferrer"
+          <a href="https://instagram.com/teecustomkitchens" target="_blank" rel="noopener noreferrer"
             style={{ color: '#d4a574', textDecoration: 'none', fontSize: '0.95rem' }}>
             Instagram
           </a>
-          <a href="https://wa.me/27XXXXXXXXX" target="_blank" rel="noopener noreferrer"
+          <a href="https://wa.me/27719577249" target="_blank" rel="noopener noreferrer"
             style={{ color: '#d4a574', textDecoration: 'none', fontSize: '0.95rem' }}>
             WhatsApp
           </a>
