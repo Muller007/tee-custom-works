@@ -5,6 +5,15 @@ export default function Home() {
   const [clipPercent, setClipPercent] = useState(50);
   const containerRef = useRef(null);
   const [isDragging, setIsDragging] = useState(false);
+  const [chatOpen, setChatOpen] = useState(false);
+  const [chatStep, setChatStep] = useState(0);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    projectType: '',
+    message: ''
+  });
 
   // Calculate text visibility based on slider position
   const beforeVisibility = Math.max(0, 1 - (clipPercent / 30));
@@ -25,6 +34,44 @@ export default function Home() {
     setClipPercent(percent);
   };
 
+  // Handle form submission
+  const handleFormSubmit = () => {
+    const whatsappMessage = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nProject Type: ${formData.projectType}\nMessage: ${formData.message}`;
+    const whatsappUrl = `https://wa.me/27719577249?text=${encodeURIComponent(whatsappMessage)}`;
+    
+    // Send email via FormSubmit.co (free service)
+    fetch('https://formspree.io/f/xyzabc', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        projectType: formData.projectType,
+        message: formData.message
+      })
+    });
+
+    // Open WhatsApp
+    window.open(whatsappUrl, '_blank');
+    
+    // Reset form
+    setFormData({ name: '', email: '', phone: '', projectType: '', message: '' });
+    setChatStep(0);
+    setChatOpen(false);
+  };
+
+  const chatMessages = [
+    "Hi! 👋 Welcome to Tee Custom Kitchens. What's your name?",
+    "Nice to meet you! What's your email address?",
+    "Thanks! And your phone number?",
+    "What type of project are you interested in?",
+    "Tell us more about your project!",
+    "Perfect! Let me send this to Tee via WhatsApp and Email."
+  ];
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -38,24 +85,41 @@ export default function Home() {
         position: 'sticky',
         top: 0,
         zIndex: 100,
-        gap: '0.5rem',
-        flexWrap: 'wrap'
+        gap: '1rem',
+        flexWrap: 'nowrap'
       }}>
         
-        {/* LEFT: Logo */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <img 
-            src="/tee-logo.png" 
-            alt="Tee Custom Works" 
-            style={{ height: '40px', width: 'auto' }} 
-          />
-          <span style={{ fontSize: '16px', fontWeight: '700', color: '#2c2c2a' }}>
-            Tee Custom Works
-          </span>
+        {/* LEFT: Logo - Rounded and Bigger */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
+          <div style={{
+            width: '50px',
+            height: '50px',
+            borderRadius: '50%',
+            backgroundColor: '#8b7355',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexShrink: 0,
+            boxShadow: '0 2px 8px rgba(139, 115, 85, 0.3)'
+          }}>
+            <img 
+              src="/tee-logo.png" 
+              alt="Tee Custom Works" 
+              style={{ height: '45px', width: '45px', borderRadius: '50%', objectFit: 'cover' }} 
+            />
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', minWidth: 0 }}>
+            <span style={{ fontSize: '15px', fontWeight: '700', color: '#2c2c2a', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+              Tee
+            </span>
+            <span style={{ fontSize: '10px', color: '#999', letterSpacing: '0.5px' }}>
+              CUSTOM WORKS
+            </span>
+          </div>
         </div>
         
         {/* RIGHT: Social Links + WhatsApp Button */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexShrink: 0 }}>
           
           {/* Facebook */}
           <a 
@@ -66,7 +130,9 @@ export default function Home() {
               textDecoration: 'none',
               fontSize: '18px',
               color: '#8b7355',
-              transition: 'color 0.2s'
+              transition: 'color 0.2s',
+              display: 'flex',
+              alignItems: 'center'
             }}
           >
             f
@@ -81,7 +147,9 @@ export default function Home() {
               textDecoration: 'none',
               fontSize: '18px',
               color: '#8b7355',
-              transition: 'color 0.2s'
+              transition: 'color 0.2s',
+              display: 'flex',
+              alignItems: 'center'
             }}
           >
             📷
@@ -103,7 +171,8 @@ export default function Home() {
               alignItems: 'center',
               gap: '4px',
               transition: 'background 0.2s',
-              whiteSpace: 'nowrap'
+              whiteSpace: 'nowrap',
+              flexShrink: 0
             }}
             onMouseEnter={(e) => e.target.style.background = '#7a6349'}
             onMouseLeave={(e) => e.target.style.background = '#8b7355'}
@@ -153,7 +222,7 @@ export default function Home() {
           {/* AFTER IMAGE (Background) */}
           <img
             src="/after.jpg"
-            alt=" "
+            alt="After: Transformed Space"
             style={{
               position: 'absolute',
               width: '100%',
@@ -179,7 +248,7 @@ export default function Home() {
           >
             <img
               src="/before.jpg"
-              alt=" "
+              alt="Before: Raw Space"
               style={{
                 position: 'absolute',
                 width: '100%',
@@ -207,8 +276,6 @@ export default function Home() {
               transition: 'box-shadow 0.2s ease'
             }}
           />
-
-          {/* ========== ONLY SMART LABELS - NO DESCRIPTIVE TEXT ========== */}
 
           {/* BEFORE Label - Only appears on left side */}
           <span
@@ -330,6 +397,232 @@ export default function Home() {
         }}>
           Reveal the transformation
         </p>
+      </section>
+
+      {/* VIDEO SECTION - NEW */}
+      <section style={{
+        padding: '3rem 1rem',
+        backgroundColor: '#fff',
+        maxWidth: '1200px',
+        margin: '0 auto'
+      }}>
+        <h2 style={{
+          fontSize: '2.5rem',
+          fontWeight: '700',
+          textAlign: 'center',
+          marginBottom: '2rem',
+          color: '#8B7355',
+          fontFamily: 'serif'
+        }}>
+          Recent Project Videos
+        </h2>
+
+        {/* Video Upload/Display Area */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '2rem',
+          maxWidth: '1000px',
+          margin: '0 auto'
+        }}>
+          {/* Video 1 */}
+          <div style={{
+            background: 'white',
+            borderRadius: '12px',
+            overflow: 'hidden',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
+            transition: 'transform 0.3s ease'
+          }}>
+            <div style={{
+              width: '100%',
+              paddingBottom: '56.25%',
+              position: 'relative',
+              backgroundColor: '#000',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <video
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+                controls
+              >
+                <source src="/project-video-1.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              {/* Fallback if no video uploaded */}
+              {!true && (
+                <div style={{
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '3rem',
+                  color: '#999'
+                }}>
+                  🎬
+                </div>
+              )}
+            </div>
+            <div style={{ padding: '1.5rem' }}>
+              <h3 style={{
+                fontSize: '1.2rem',
+                fontWeight: '600',
+                color: '#2c2c2a',
+                margin: '0 0 0.5rem 0'
+              }}>
+                Custom Kitchen Installation
+              </h3>
+              <p style={{
+                fontSize: '0.9rem',
+                color: '#666',
+                margin: 0
+              }}>
+                Watch our latest kitchen transformation project
+              </p>
+            </div>
+          </div>
+
+          {/* Video 2 */}
+          <div style={{
+            background: 'white',
+            borderRadius: '12px',
+            overflow: 'hidden',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
+            transition: 'transform 0.3s ease'
+          }}>
+            <div style={{
+              width: '100%',
+              paddingBottom: '56.25%',
+              position: 'relative',
+              backgroundColor: '#000',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <video
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+                controls
+              >
+                <source src="/project-video-2.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              {/* Fallback if no video uploaded */}
+              {!true && (
+                <div style={{
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '3rem',
+                  color: '#999'
+                }}>
+                  🎬
+                </div>
+              )}
+            </div>
+            <div style={{ padding: '1.5rem' }}>
+              <h3 style={{
+                fontSize: '1.2rem',
+                fontWeight: '600',
+                color: '#2c2c2a',
+                margin: '0 0 0.5rem 0'
+              }}>
+                Bedroom Wardrobe Design
+              </h3>
+              <p style={{
+                fontSize: '0.9rem',
+                color: '#666',
+                margin: 0
+              }}>
+                Beautiful custom wardrobe installation process
+              </p>
+            </div>
+          </div>
+
+          {/* Video 3 */}
+          <div style={{
+            background: 'white',
+            borderRadius: '12px',
+            overflow: 'hidden',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
+            transition: 'transform 0.3s ease'
+          }}>
+            <div style={{
+              width: '100%',
+              paddingBottom: '56.25%',
+              position: 'relative',
+              backgroundColor: '#000',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+              <video
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
+                controls
+              >
+                <source src="/project-video-3.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              {/* Fallback if no video uploaded */}
+              {!true && (
+                <div style={{
+                  position: 'absolute',
+                  width: '100%',
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '3rem',
+                  color: '#999'
+                }}>
+                  🎬
+                </div>
+              )}
+            </div>
+            <div style={{ padding: '1.5rem' }}>
+              <h3 style={{
+                fontSize: '1.2rem',
+                fontWeight: '600',
+                color: '#2c2c2a',
+                margin: '0 0 0.5rem 0'
+              }}>
+                Island Kitchen Build
+              </h3>
+              <p style={{
+                fontSize: '0.9rem',
+                color: '#666',
+                margin: 0
+              }}>
+                Professional island kitchen construction
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Featured Works Section */}
@@ -557,6 +850,164 @@ export default function Home() {
         </div>
       </section>
 
+      {/* CONTACT SECTION - NEW WITH EMAIL */}
+      <section style={{
+        padding: '3rem 1rem',
+        backgroundColor: '#fff',
+        maxWidth: '1000px',
+        margin: '0 auto'
+      }}>
+        <h2 style={{
+          fontSize: '2.5rem',
+          fontWeight: '700',
+          textAlign: 'center',
+          marginBottom: '2rem',
+          color: '#8B7355',
+          fontFamily: 'serif'
+        }}>
+          Get In Touch
+        </h2>
+
+        {/* Contact Info Cards */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gap: '2rem',
+          marginBottom: '3rem'
+        }}>
+          {/* WhatsApp */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
+            textAlign: 'center'
+          }}>
+            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>💬</div>
+            <h3 style={{
+              fontSize: '1.2rem',
+              fontWeight: '600',
+              color: '#2c2c2a',
+              marginBottom: '0.5rem'
+            }}>
+              WhatsApp
+            </h3>
+            <p style={{
+              fontSize: '0.95rem',
+              color: '#666',
+              marginBottom: '1rem'
+            }}>
+              Quick responses and easy communication
+            </p>
+            <a 
+              href="https://wa.me/27719577249"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-block',
+                background: '#25D366',
+                color: 'white',
+                padding: '10px 20px',
+                borderRadius: '6px',
+                textDecoration: 'none',
+                fontWeight: '600',
+                transition: 'background 0.3s'
+              }}
+              onMouseEnter={(e) => e.target.style.background = '#20BA58'}
+              onMouseLeave={(e) => e.target.style.background = '#25D366'}
+            >
+              Send Message
+            </a>
+          </div>
+
+          {/* Email */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
+            textAlign: 'center'
+          }}>
+            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>📧</div>
+            <h3 style={{
+              fontSize: '1.2rem',
+              fontWeight: '600',
+              color: '#2c2c2a',
+              marginBottom: '0.5rem'
+            }}>
+              Email
+            </h3>
+            <p style={{
+              fontSize: '0.95rem',
+              color: '#666',
+              marginBottom: '1rem'
+            }}>
+              tee@teecustomkitchens.co.za
+            </p>
+            <a 
+              href="mailto:tee@teecustomkitchens.co.za"
+              style={{
+                display: 'inline-block',
+                background: '#8b7355',
+                color: 'white',
+                padding: '10px 20px',
+                borderRadius: '6px',
+                textDecoration: 'none',
+                fontWeight: '600',
+                transition: 'background 0.3s'
+              }}
+              onMouseEnter={(e) => e.target.style.background = '#7a6349'}
+              onMouseLeave={(e) => e.target.style.background = '#8b7355'}
+            >
+              Send Email
+            </a>
+          </div>
+
+          {/* Phone */}
+          <div style={{
+            background: 'white',
+            padding: '2rem',
+            borderRadius: '12px',
+            boxShadow: '0 4px 15px rgba(0,0,0,0.08)',
+            textAlign: 'center'
+          }}>
+            <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>📞</div>
+            <h3 style={{
+              fontSize: '1.2rem',
+              fontWeight: '600',
+              color: '#2c2c2a',
+              marginBottom: '0.5rem'
+            }}>
+              Phone
+            </h3>
+            <p style={{
+              fontSize: '0.95rem',
+              color: '#666',
+              marginBottom: '1rem'
+            }}>
+              Call or text anytime
+            </p>
+            <a 
+              href="tel:+27719577249"
+              style={{
+                display: 'inline-block',
+                background: '#8b7355',
+                color: 'white',
+                padding: '10px 20px',
+                borderRadius: '6px',
+                textDecoration: 'none',
+                fontWeight: '600',
+                transition: 'background 0.3s'
+              }}
+              onMouseEnter={(e) => e.target.style.background = '#7a6349'}
+              onMouseLeave={(e) => e.target.style.background = '#8b7355'}
+            >
+              Call Now
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section style={{
         padding: '3rem 1rem',
@@ -631,6 +1082,251 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Floating Chatbot Button */}
+      <button
+        onClick={() => setChatOpen(!chatOpen)}
+        style={{
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
+          width: '60px',
+          height: '60px',
+          borderRadius: '50%',
+          background: '#8b7355',
+          color: 'white',
+          border: 'none',
+          fontSize: '28px',
+          cursor: 'pointer',
+          boxShadow: '0 4px 12px rgba(139, 115, 85, 0.4)',
+          transition: 'all 0.3s ease',
+          zIndex: 999
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.transform = 'scale(1.1)';
+          e.target.style.boxShadow = '0 6px 20px rgba(139, 115, 85, 0.6)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.transform = 'scale(1)';
+          e.target.style.boxShadow = '0 4px 12px rgba(139, 115, 85, 0.4)';
+        }}
+      >
+        💬
+      </button>
+
+      {/* Chatbot Modal */}
+      {chatOpen && (
+        <div style={{
+          position: 'fixed',
+          bottom: '90px',
+          right: '20px',
+          width: '320px',
+          maxHeight: '500px',
+          background: 'white',
+          borderRadius: '12px',
+          boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+          zIndex: 998,
+          display: 'flex',
+          flexDirection: 'column'
+        }}>
+          {/* Chat Header */}
+          <div style={{
+            background: '#8b7355',
+            color: 'white',
+            padding: '1rem',
+            borderRadius: '12px 12px 0 0',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}>
+            <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: '600' }}>Tee Custom Kitchens</h3>
+            <button
+              onClick={() => setChatOpen(false)}
+              style={{
+                background: 'none',
+                border: 'none',
+                color: 'white',
+                fontSize: '20px',
+                cursor: 'pointer'
+              }}
+            >
+              ✕
+            </button>
+          </div>
+
+          {/* Chat Messages */}
+          <div style={{
+            flex: 1,
+            overflow: 'auto',
+            padding: '1rem',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem',
+            minHeight: '250px'
+          }}>
+            {/* Bot Message */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'flex-start'
+            }}>
+              <div style={{
+                background: '#f0f0f0',
+                color: '#2c2c2a',
+                padding: '10px 14px',
+                borderRadius: '10px',
+                maxWidth: '80%',
+                fontSize: '0.9rem'
+              }}>
+                {chatMessages[chatStep]}
+              </div>
+            </div>
+
+            {/* User Input/Display */}
+            {chatStep === 0 && (
+              <input
+                type="text"
+                placeholder="Your name..."
+                value={formData.name}
+                onChange={(e) => setFormData({...formData, name: e.target.value})}
+                style={{
+                  padding: '10px',
+                  borderRadius: '6px',
+                  border: '1px solid #e0e0e0',
+                  fontSize: '0.9rem'
+                }}
+              />
+            )}
+            {chatStep === 1 && (
+              <input
+                type="email"
+                placeholder="Your email..."
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
+                style={{
+                  padding: '10px',
+                  borderRadius: '6px',
+                  border: '1px solid #e0e0e0',
+                  fontSize: '0.9rem'
+                }}
+              />
+            )}
+            {chatStep === 2 && (
+              <input
+                type="tel"
+                placeholder="Your phone..."
+                value={formData.phone}
+                onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                style={{
+                  padding: '10px',
+                  borderRadius: '6px',
+                  border: '1px solid #e0e0e0',
+                  fontSize: '0.9rem'
+                }}
+              />
+            )}
+            {chatStep === 3 && (
+              <select
+                value={formData.projectType}
+                onChange={(e) => setFormData({...formData, projectType: e.target.value})}
+                style={{
+                  padding: '10px',
+                  borderRadius: '6px',
+                  border: '1px solid #e0e0e0',
+                  fontSize: '0.9rem'
+                }}
+              >
+                <option value="">Select project type...</option>
+                <option value="Kitchen">Kitchen</option>
+                <option value="Wardrobe">Wardrobe</option>
+                <option value="Both">Both</option>
+                <option value="Other">Other</option>
+              </select>
+            )}
+            {chatStep === 4 && (
+              <textarea
+                placeholder="Tell us about your project..."
+                value={formData.message}
+                onChange={(e) => setFormData({...formData, message: e.target.value})}
+                style={{
+                  padding: '10px',
+                  borderRadius: '6px',
+                  border: '1px solid #e0e0e0',
+                  fontSize: '0.9rem',
+                  minHeight: '80px',
+                  fontFamily: 'inherit'
+                }}
+              />
+            )}
+          </div>
+
+          {/* Chat Footer */}
+          <div style={{
+            padding: '1rem',
+            borderTop: '1px solid #e0e0e0',
+            display: 'flex',
+            gap: '0.5rem'
+          }}>
+            {chatStep < 5 ? (
+              <>
+                <button
+                  onClick={() => {
+                    if (chatStep === 0 && !formData.name) return;
+                    if (chatStep === 1 && !formData.email) return;
+                    if (chatStep === 2 && !formData.phone) return;
+                    if (chatStep === 3 && !formData.projectType) return;
+                    setChatStep(chatStep + 1);
+                  }}
+                  style={{
+                    flex: 1,
+                    background: '#8b7355',
+                    color: 'white',
+                    border: 'none',
+                    padding: '10px',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    fontWeight: '600',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  Next →
+                </button>
+                {chatStep > 0 && (
+                  <button
+                    onClick={() => setChatStep(chatStep - 1)}
+                    style={{
+                      width: '40px',
+                      background: '#f0f0f0',
+                      border: 'none',
+                      borderRadius: '6px',
+                      cursor: 'pointer',
+                      fontSize: '1rem'
+                    }}
+                  >
+                    ← Back
+                  </button>
+                )}
+              </>
+            ) : (
+              <button
+                onClick={handleFormSubmit}
+                style={{
+                  flex: 1,
+                  background: '#25D366',
+                  color: 'white',
+                  border: 'none',
+                  padding: '10px',
+                  borderRadius: '6px',
+                  cursor: 'pointer',
+                  fontWeight: '600',
+                  fontSize: '0.9rem'
+                }}
+              >
+                Send to WhatsApp & Email ✓
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Footer */}
       <footer style={{
         padding: '2rem 1rem',
@@ -638,7 +1334,7 @@ export default function Home() {
         color: 'white',
         textAlign: 'center'
       }}>
-        <p style={{ margin: '0.5rem 0' }}>© 2024 Tee Custom Works. All rights reserved.</p>
+        <p style={{ margin: '0.5rem 0' }}>© 2026 Tee Custom Kitchens. All rights reserved.</p>
         
         <div style={{
           display: 'flex',
@@ -658,6 +1354,10 @@ export default function Home() {
           <a href="https://wa.me/27719577249" target="_blank" rel="noopener noreferrer"
             style={{ color: '#d4a574', textDecoration: 'none', fontSize: '0.95rem' }}>
             WhatsApp
+          </a>
+          <a href="mailto:tee@teecustomworks.co.za"
+            style={{ color: '#d4a574', textDecoration: 'none', fontSize: '0.95rem' }}>
+            Email
           </a>
         </div>
       </footer>
