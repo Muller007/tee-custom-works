@@ -1,7 +1,7 @@
 import './globals.css'
 
 export const metadata = {
-  title: 'Tee Custom Works - Premium Kitchens & Wardrobes',
+  title: 'Tee Custom Kitchens - Premium Kitchens & Wardrobes',
   description: 'Bespoke custom kitchens, wardrobes, and built-ins crafted with timeless design and attention to detail.',
   icons: {
     icon: '/favicon.ico',
