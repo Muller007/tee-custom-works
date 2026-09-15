@@ -103,8 +103,8 @@ export default function Home() {
             boxShadow: '0 2px 8px rgba(139, 115, 85, 0.3)'
           }}>
             <img 
-              src="/tee-logo.png" 
-              alt="Tee Custom Works" 
+              src="/tee-logo.svg" 
+              alt="Tee Custom Kitchens" 
               style={{ height: '45px', width: '45px', borderRadius: '50%', objectFit: 'cover' }} 
             />
           </div>
