@@ -277,7 +277,7 @@ export default function Home() {
             }}
           />
 
-          {/* BEFORE Label - Only appears on left side */}
+          {/* AFTER Label - Only appears on left side */}
           <span
             style={{
               position: 'absolute',
@@ -297,10 +297,10 @@ export default function Home() {
               letterSpacing: '1px'
             }}
           >
-            BEFORE
+            AFTER
           </span>
 
-          {/* AFTER Label - Only appears on right side */}
+          {/* BEFORE Label - Only appears on right side */}
           <span
             style={{
               position: 'absolute',
@@ -320,7 +320,7 @@ export default function Home() {
               letterSpacing: '1px'
             }}
           >
-            AFTER
+            BEFORE
           </span>
 
           {/* Creative Percentage Indicator - Center Only */}
