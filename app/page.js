@@ -658,9 +658,9 @@ export default function Home() {
           margin: '0 auto'
         }}>
           {[
-            { image: '/kitchen-1.jpg', title: 'Modern Kitchen', type: 'Kitchen Design' },
-            { image: '/wardrobe-1.jpg', title: 'Custom Wardrobes', type: 'Bedroom Setup' },
-            { image: '/kitchen-2.jpg', title: ' Modern Style', type: 'Kitchen Design' }
+            { image: '/kitchen-4.jpg', title: 'Modern Kitchen', type: 'Kitchen Design' },
+            { image: '/wardrobe-4.jpg', title: 'Custom Wardrobes', type: 'Bedroom Setup' },
+            { image: '/kitchen-5.jpg', title: ' Modern Style', type: 'Kitchen Design' }
           ].map((project, i) => (
             <div
               key={i}
@@ -742,7 +742,7 @@ export default function Home() {
         }}>
           {[
             '/kitchen-1.jpg', '/kitchen-2.jpg', '/kitchen-3.jpg',
-            '/bedroom-1.jpg', '/bedroom-2.jpg', '/bedroom-3.jpg',
+            '/bedroom-1.jpg', '/bedroom-2.jpg', '/bedroom-6.jpg',
             '/island-1.jpg', '/island-2.jpg', '/island-3.jpg'
           ].map((image, i) => (
             <div
