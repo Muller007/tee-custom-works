@@ -742,8 +742,8 @@ export default function Home() {
         }}>
           {[
             '/kitchen-1.jpg', '/kitchen-2.jpg', '/kitchen-3.jpg',
-            '/wardrobe-1.jpg', '/wardrobe-2.jpg', '/wardrobe-3.jpg',
-            '/island-1.jpg', '/island-2.jpg', '/other-1.jpg'
+            '/bedroom-1.jpg', '/bedroom-2.jpg', '/bedroom-3.jpg',
+            '/island-1.jpg', '/island-2.jpg', '/island-3.jpg'
           ].map((image, i) => (
             <div
               key={i}
