@@ -545,14 +545,14 @@ export default function Home() {
                 color: '#2c2c2a',
                 margin: '0 0 0.5rem 0'
               }}>
-                Bedroom Wardrobe Design
+                Morden TV Unit
               </h3>
               <p style={{
                 fontSize: '0.9rem',
                 color: '#666',
                 margin: 0
               }}>
-                Beautiful custom wardrobe installation process
+                Beautiful custom floating tv stand well set
               </p>
             </div>
           </div>
