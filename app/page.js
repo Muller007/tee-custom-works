@@ -659,7 +659,7 @@ export default function Home() {
         }}>
           {[
             { image: '/kitchen-4.jpg', title: 'Modern Kitchen', type: 'Kitchen Design' },
-            { image: '/wardrobe-4.jpg', title: 'Custom Wardrobes', type: 'Bedroom Setup' },
+            { image: '/bedroom-5.jpg', title: 'Custom Wardrobes', type: 'Bedroom Setup' },
             { image: '/kitchen-5.jpg', title: ' Modern Style', type: 'Kitchen Design' }
           ].map((project, i) => (
             <div
