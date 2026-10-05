@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef } from 'react';
+inport { useState, useRef } from 'react';
 
 export default function Home() {
   const [clipPercent, setClipPercent] = useState(50);
